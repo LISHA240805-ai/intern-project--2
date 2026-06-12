@@ -1,0 +1,7 @@
+{
+  "tool_name": "sales_orders_total",
+  "input_schema": {},
+  "endpoint": "http://localhost:8001/orders/total",
+  "method": "GET",
+  "description": "Return total sales amount for matching orders"
+}

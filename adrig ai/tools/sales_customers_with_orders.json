@@ -1,0 +1,7 @@
+{
+  "tool_name": "sales_customers_with_orders",
+  "input_schema": {},
+  "endpoint": "http://localhost:8001/customers/with-orders",
+  "method": "GET",
+  "description": "List customers with order counts and total spend"
+}

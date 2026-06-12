@@ -1,0 +1,7 @@
+{
+  "tool_name": "sales_recent_orders",
+  "input_schema": {},
+  "endpoint": "http://localhost:8001/orders/recent",
+  "method": "GET",
+  "description": "List the most recent orders"
+}

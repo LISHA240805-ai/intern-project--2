@@ -1,0 +1,7 @@
+{
+  "tool_name": "check_balance",
+  "input_schema": {
+    "required": ["account_id"]
+  },
+  "endpoint": "http://dummy-api/balance"
+}

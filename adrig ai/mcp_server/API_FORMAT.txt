@@ -1,0 +1,60 @@
+MCP Server API Format and placement
+
+1) JSON Tool Descriptors (remote HTTP APIs)
+- Location: `tools/` (root-level folder next to `mcp_server`)
+- Filename: any `.json`
+- Required fields:
+  - `tool_name`: unique name to call the tool
+  - `endpoint`: full HTTP URL of the API (e.g., `http://localhost:8001/flights`)
+  - `input_schema`: {"required": ["field1", "field2"]} (used by validator)
+- Optional fields:
+  - `method`: HTTP method (`POST`, `GET`). Defaults to `POST`.
+  - `headers`: object of headers to send with the request.
+  - `description`: free-text description of the tool
+
+Example `tools/flight.json`
+{
+  "tool_name": "get_flights",
+  "input_schema": {"required": ["from", "to"]},
+  "endpoint": "http://localhost:8001/flights",
+  "method": "POST"
+}
+
+2) Local Python Adapters (fast, in-process handlers)
+- Location: `mcp_server/adapters/`
+- File: any `.py` module
+- Required: expose a `TOOL` dict and a callable `handler` (or `handle`) function.
+- `TOOL` should include at least `tool_name` and optionally `input_schema` and `description`.
+- `handler(input_data: dict)` must return a JSON-serializable dict.
+
+Example adapter (`mcp_server/adapters/example_adapter.py`):
+TOOL = {
+    "tool_name": "local_echo",
+    "input_schema": {"required": ["message"]}
+}
+
+def handler(input_data):
+    return {"echo": input_data.get("message")}
+
+3) External HTTP APIs
+- Put example or external HTTP server code in `external_apis/` (sibling to the project root).
+- Example: `external_apis/test_api.py` provides `/flights`, `/echo`, `/status` endpoints used by `tools/*.json` descriptors.
+
+4) How to call tools via MCP
+- HTTP: `POST /mcp/execute` on the MCP server (FastAPI app)
+  Request body JSON: {"tool_name": "get_flights", "input": {"from": "NYC", "to": "LAX"}}
+  Response: JSON result returned by the tool or an error
+
+- Programmatic: import `execute` from `mcp_server.engine` and call `execute(tool_name, input_dict)`
+
+5) Notes
+- The registry loads both `tools/*.json` and `mcp_server/adapters/*.py` automatically at startup.
+- Use `input_schema` -> {"required": [...]} to declare required keys; the MCP validator will raise if missing.
+- For remote endpoints, ensure the `endpoint` URL is reachable from where the MCP server runs.
+- To run the example external API and MCP server locally:
+  pip install -r requirements.txt
+  # Run external example API in one terminal:
+  uvicorn external_apis.test_api:app --port 8001
+  # Run MCP server in another terminal:
+  uvicorn mcp_server.server:app --port 8000
+

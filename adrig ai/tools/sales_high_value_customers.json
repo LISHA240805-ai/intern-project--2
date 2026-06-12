@@ -1,0 +1,7 @@
+{
+  "tool_name": "sales_high_value_customers",
+  "input_schema": {},
+  "endpoint": "http://localhost:8001/customers/high-value",
+  "method": "GET",
+  "description": "List customer name and customer id for orders with total >= min_total"
+}

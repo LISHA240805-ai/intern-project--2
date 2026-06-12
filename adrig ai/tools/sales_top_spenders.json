@@ -1,0 +1,7 @@
+{
+  "tool_name": "sales_top_spenders",
+  "input_schema": {},
+  "endpoint": "http://localhost:8001/customers/top-spenders",
+  "method": "GET",
+  "description": "List top customers by total spend"
+}

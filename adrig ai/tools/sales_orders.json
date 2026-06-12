@@ -1,0 +1,7 @@
+{
+  "tool_name": "sales_orders",
+  "input_schema": {},
+  "endpoint": "http://localhost:8001/orders",
+  "method": "GET",
+  "description": "List orders from sales_db"
+}

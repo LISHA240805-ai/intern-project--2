@@ -1,0 +1,9 @@
+{
+  "tool_name": "echo",
+  "input_schema": {
+    "required": ["message"]
+  },
+  "endpoint": "http://localhost:8001/echo",
+  "method": "POST",
+  "description": "Simple echo external API"
+}

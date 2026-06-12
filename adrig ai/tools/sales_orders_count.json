@@ -1,0 +1,7 @@
+{
+  "tool_name": "sales_orders_count",
+  "input_schema": {},
+  "endpoint": "http://localhost:8001/orders/count",
+  "method": "GET",
+  "description": "Count orders, optionally filtered by customer or amount"
+}

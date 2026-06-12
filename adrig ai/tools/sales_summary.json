@@ -1,0 +1,7 @@
+{
+  "tool_name": "sales_summary",
+  "input_schema": {},
+  "endpoint": "http://localhost:8001/sales/summary",
+  "method": "GET",
+  "description": "Summary aggregates for sales_db"
+}

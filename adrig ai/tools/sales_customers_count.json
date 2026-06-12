@@ -1,0 +1,7 @@
+{
+  "tool_name": "sales_customers_count",
+  "input_schema": {},
+  "endpoint": "http://localhost:8001/customers/count",
+  "method": "GET",
+  "description": "Count all customers in the sales database"
+}

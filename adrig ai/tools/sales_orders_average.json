@@ -1,0 +1,7 @@
+{
+  "tool_name": "sales_orders_average",
+  "input_schema": {},
+  "endpoint": "http://localhost:8001/orders/average",
+  "method": "GET",
+  "description": "Return average order total for matching orders"
+}

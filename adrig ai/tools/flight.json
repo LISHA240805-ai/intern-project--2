@@ -1,0 +1,7 @@
+{
+  "tool_name": "get_flights",
+  "input_schema": {
+    "required": ["from", "to"]
+  },
+  "endpoint": "http://localhost:8001/flights"
+}
